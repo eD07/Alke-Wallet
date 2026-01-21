@@ -438,8 +438,7 @@ $(document).ready(function () {
         if (t.type === "withdraw") icono = "💵";
         if (t.type === "transfer") icono = "🔁";
 
-        // El saldo después de este movimiento es el que hay AHORA,
-        // luego lo ajustamos para la próxima iteración.
+
         let saldoDespues = saldoActual;
 
         // Construye la fila visual
@@ -487,16 +486,16 @@ $(document).ready(function () {
     return w.contacts || []; // Si no existen, retornar un array vacío
   }
 
-  // Función para renderizar la lista de contactos
+
   function renderContacts(contacts) {
     const contactsList = $("#contactsList");
     contactsList.empty(); // Limpiar la lista
 
     if (contacts.length === 0) {
-      // Si no hay contactos, mostrar el mensaje
+
       $("#noContactsMessage").removeClass("d-none");
     } else {
-      // Si hay contactos, ocultar el mensaje
+
       $("#noContactsMessage").addClass("d-none");
 
       contacts.forEach(function (contact) {
@@ -531,19 +530,19 @@ $(document).ready(function () {
             contact.bank
           );
         }),
-      ); // Proporcionar resultados al autocompletado
+      ); 
     },
-    minLength: 2, // Mínimo de caracteres para activar el autocompletado
+    minLength: 2, 
     select: function (event, ui) {
-      const selectedContact = ui.item.value; // Obtener el valor del contacto seleccionado
-      $("#search").val(selectedContact); // Completar el campo de búsqueda
-      $("#sendMoneyBtn").removeClass("d-none"); // Mostrar el botón de "Confirmar envío"
+      const selectedContact = ui.item.value; 
+      $("#search").val(selectedContact); 
+      $("#sendMoneyBtn").removeClass("d-none"); 
     },
   });
 
-  // Manejar la selección de un contacto
+  
   $("#contactsList").on("click", ".contact-item", function () {
-    const contact = $(this).data("contact"); // Obtener los datos del contacto seleccionado
+    const contact = $(this).data("contact"); 
     $("#search").val(
       contact.name +
         " — " +
@@ -552,22 +551,22 @@ $(document).ready(function () {
         contact.alias +
         " | Banco: " +
         contact.bank,
-    ); // Completar el campo de búsqueda
-    $("#sendMoneyBtn").removeClass("d-none"); // Mostrar el botón de "Confirmar envío"
+    ); 
+    $("#sendMoneyBtn").removeClass("d-none"); 
   });
 
   // Inicializar la página
   const contacts = getContacts();
-  renderContacts(contacts); // Renderizar los contactos al cargar la página
+  renderContacts(contacts); 
 });
 
-// Habilitar autocompletar para el campo de búsqueda
+
 $("#search").autocomplete({
   source: getContacts(),
 
-  minLength: 2, // Mínimo de caracteres antes de buscar
+  minLength: 2, 
   select: function (event, ui) {
-    // Lógica para manejar la selección del contacto
+    
     var selectedContact = ui.item.value;
     var w = getWallet();
     var selected = w.contacts.find(function (contact) {

@@ -1,5 +1,5 @@
 /* =========================================================
-   Alke Wallet – Styles (Dual Theme: Landing Dark + App Light)
+   Alke Wallet
    ========================================================= */
 
 :root{
@@ -50,10 +50,7 @@ body{
   color: transparent;
 }
 
-/* =========================
-   THEME 1: LANDING / DARK
-   (index y si quieres login)
-   ========================= */
+
 .bg-soft{
   min-height: 100vh;
   background:
@@ -65,7 +62,7 @@ body{
 
 .bg-soft .small-muted{ color: rgba(255,255,255,.65); }
 
-/* Cards "glass" para landing/login dark */
+
 .aw-card{
   border: 1px solid rgba(255,255,255,.10);
   background: rgba(255,255,255,.06);
@@ -75,7 +72,7 @@ body{
   color: #e5e7eb;
 }
 
-/* login usa card-soft (existía en HTML y faltaba en tu css) */
+
 .card-soft{
   border: 1px solid rgba(255,255,255,.10);
   background: rgba(255,255,255,.06);
@@ -85,7 +82,7 @@ body{
   color: #e5e7eb;
 }
 
-/* Navbar dark (si la usas en pantallas oscuras) */
+
 .navbar-aw{
   background: transparent;
   border-bottom: 1px solid rgba(255,255,255,.08);
@@ -97,10 +94,7 @@ body{
 }
 .navbar-aw .nav-link:hover{ color: #fff; }
 
-/* =========================
-   THEME 2: APP / LIGHT (AZUL)
-   menu, sendmoney, deposit, transactions
-   ========================= */
+
 .bg-light-ui{
   min-height: 100vh;
   background:
@@ -112,7 +106,7 @@ body{
 
 .bg-light-ui .small-muted{ color: var(--aw-muted); }
 
-/* Topbar / navbar light (una sola definición, sin duplicados) */
+
 .topbar{
   background: rgba(255,255,255,.75);
   backdrop-filter: blur(10px);
@@ -125,7 +119,7 @@ body{
 }
 .topbar .nav-link:hover{ color: #111827; }
 
-/* Cards light */
+
 .card-ui{
   background: var(--aw-card);
   border: 1px solid rgba(15,23,42,.08);
@@ -133,7 +127,7 @@ body{
   box-shadow: 0 10px 24px rgba(15,23,42,.08);
 }
 
-/* Para secciones internas con “panel” */
+
 .panel-ui{
   background: rgba(255,255,255,.70);
   border: 1px solid rgba(15,23,42,.08);
@@ -141,7 +135,7 @@ body{
   box-shadow: 0 10px 24px rgba(15,23,42,.06);
 }
 
-/* Action cards (menu/sendmoney) – versión light, NO sobrecargada */
+
 .action-card{
   display: flex;
   align-items: center;
