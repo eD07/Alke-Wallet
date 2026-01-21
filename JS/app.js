@@ -132,37 +132,124 @@ function validarRUT(rut) {
 
 $(document).ready(function () {
   initWallet();
-  ensureLoggedIn();
 
   var page = $("body").attr("data-page");
 
-  // ---------------- LOGIN ----------------
-  if (page === "login") {
-    $("#email").val("user@test.com");
-    $("#password").val("1234");
 
-    $("#loginForm").submit(function (e) {
-      e.preventDefault();
-
-      var email = $("#email").val().trim();
-      var pass = $("#password").val().trim();
-
-      if (email === "user@test.com" && pass === "1234") {
-        var w = getWallet();
-        w.loggedIn = true;
-        saveWallet(w);
-        showAlert(
-          "success",
-          "Login exitoso. Redirigiendo al menú principal...",
-        );
-        setTimeout(function () {
-          window.location.href = "./menu.html";
-        }, 800);
-      } else {
-        showAlert("danger", "Credenciales incorrectas. Intenta nuevamente.");
-      }
-    });
+  if (page !== "login") {
+    ensureLoggedIn();
   }
+// ---------------- LOGIN / REGISTRO ----------------
+if (page === "login") {
+
+  (function ensureUsers() {
+    var w = getWallet();
+    if (!Array.isArray(w.users)) w.users = [];
+    if (!w.users.some((u) => (u.email || "").toLowerCase() === "user@test.com")) {
+      w.users.push({ email: "user@test.com", password: "1234" });
+    }
+    saveWallet(w);
+  })();
+
+
+  if (!$("#email").val()) $("#email").val("user@test.com");
+  if (!$("#password").val()) $("#password").val("1234");
+
+  function setAuthMode(mode) {
+    const isRegister = mode === "register";
+    $("#loginForm").toggleClass("d-none", isRegister);
+    $("#registerForm").toggleClass("d-none", !isRegister);
+
+
+    $("#showRegisterForm").text(
+      isRegister
+        ? "¿Ya tienes cuenta? Inicia sesión"
+        : "¿No tienes una cuenta? Regístrate aquí"
+    );
+
+    $("#alert-container").empty();
+  }
+
+ 
+  setAuthMode("login");
+
+
+  $("#showRegisterForm").on("click", function (e) {
+    e.preventDefault();
+    const isRegisterVisible = !$("#registerForm").hasClass("d-none");
+    setAuthMode(isRegisterVisible ? "login" : "register");
+  });
+
+
+  $("#registerUserForm").on("submit", function (e) {
+    e.preventDefault();
+
+    var email = $("#newEmail").val().trim().toLowerCase();
+    var pass1 = $("#newPassword").val();
+    var pass2 = $("#newPasswordConfirm").val();
+
+    if (!email || !pass1 || !pass2) {
+      showAlert("danger", "Completa todos los campos");
+      return;
+    }
+    if (pass1 !== pass2) {
+      showAlert("danger", "Las contraseñas no coinciden");
+      return;
+    }
+    if (pass1.length < 4) {
+      showAlert("danger", "La contraseña debe tener al menos 4 caracteres");
+      return;
+    }
+
+    var w = getWallet();
+    if (!Array.isArray(w.users)) w.users = [];
+
+    const exists = w.users.some((u) => (u.email || "").toLowerCase() === email);
+    if (exists) {
+      showAlert("danger", "Ese email ya está registrado");
+      return;
+    }
+
+    w.users.push({ email: email, password: pass1 });
+    saveWallet(w);
+
+    showAlert("success", "Cuenta creada ✅ Ahora inicia sesión.");
+
+ 
+    $("#newEmail,#newPassword,#newPasswordConfirm").val("");
+    $("#email").val(email);
+    $("#password").val(pass1);
+    setAuthMode("login");
+  });
+
+
+  $("#loginForm").on("submit", function (e) {
+    e.preventDefault();
+
+    var email = $("#email").val().trim().toLowerCase();
+    var pass = $("#password").val().trim();
+
+    var w = getWallet();
+    if (!Array.isArray(w.users)) w.users = [];
+
+    const ok = w.users.some(
+      (u) => (u.email || "").toLowerCase() === email && u.password === pass
+    );
+
+    if (ok) {
+      w.loggedIn = true;
+      w.currentUser = email; 
+      saveWallet(w);
+
+      showAlert("success", "Login exitoso. Redirigiendo al menú...");
+      setTimeout(function () {
+        window.location.href = "./menu.html";
+      }, 800);
+    } else {
+      showAlert("danger", "Credenciales incorrectas. Intenta nuevamente.");
+    }
+  });
+}
 
   // ---------------- MENU ----------------
   if (page === "menu") {

@@ -2,9 +2,9 @@
    Alke Wallet
    ========================================================= */
 
-:root{
-  --aw-primary: #2563eb;     /* azul */
-  --aw-secondary: #7c3aed;   /* violeta */
+:root {
+  --aw-primary: #2563eb; /* azul */
+  --aw-secondary: #7c3aed; /* violeta */
 
   --aw-text: #0f172a;
   --aw-muted: #64748b;
@@ -12,131 +12,159 @@
   --aw-bg-dark-1: #030712;
   --aw-bg-dark-2: #0b1f4a;
 
-  --aw-app-bg: #eaf3ff;      /* azul claro general */
-  --aw-app-bg-2: #dbeafe;    /* azul claro secundario */
+  --aw-app-bg: #eaf3ff; /* azul claro general */
+  --aw-app-bg-2: #dbeafe; /* azul claro secundario */
 
   --aw-card: #ffffff;
   --aw-card-2: #f8fbff;
 
-  --aw-border: rgba(15,23,42,.10);
+  --aw-border: rgba(15, 23, 42, 0.1);
   --aw-radius: 16px;
 }
 
 /* =========================
    BASE
    ========================= */
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
-body{
+body {
   color: var(--aw-text);
   background: var(--aw-app-bg);
 }
 
-.wallet-shell{ max-width: 980px; }
+.wallet-shell {
+  max-width: 980px;
+}
 
 /* util */
-.shadow-soft{ box-shadow: 0 10px 24px rgba(15,23,42,.08); }
-.rounded-soft{ border-radius: var(--aw-radius); }
+.shadow-soft {
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+.rounded-soft {
+  border-radius: var(--aw-radius);
+}
 
 /* =========================
    BRAND
    ========================= */
-.brand{
+.brand {
   font-weight: 800;
-  letter-spacing: .2px;
+  letter-spacing: 0.2px;
   background: linear-gradient(90deg, var(--aw-primary), var(--aw-secondary));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-
 .bg-soft{
   min-height: 100vh;
   background:
-    radial-gradient(1000px 600px at 20% 15%, rgba(124,58,237,.35) 0%, rgba(0,0,0,0) 55%),
-    radial-gradient(900px 600px at 80% 20%, rgba(37,99,235,.35) 0%, rgba(0,0,0,0) 55%),
-    linear-gradient(135deg, var(--aw-bg-dark-1), var(--aw-bg-dark-2));
+    radial-gradient(
+      900px 500px at 20% 15%,
+      rgba(124,58,237,.22) 0%,
+      rgba(0,0,0,0) 60%
+    ),
+    radial-gradient(
+      900px 500px at 80% 20%,
+      rgba(37,99,235,.22) 0%,
+      rgba(0,0,0,0) 60%
+    ),
+    linear-gradient(
+      135deg,
+      #0f172a,
+      #1e3a8a
+    );
   color: #e5e7eb;
 }
 
-.bg-soft .small-muted{ color: rgba(255,255,255,.65); }
 
+.bg-soft .small-muted{
+  color: rgba(255,255,255,.30);
+}
 
-.aw-card{
-  border: 1px solid rgba(255,255,255,.10);
-  background: rgba(255,255,255,.06);
+.aw-card {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(10px);
-  box-shadow: 0 18px 40px rgba(0,0,0,.35);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
   border-radius: 18px;
   color: #e5e7eb;
 }
-
 
 .card-soft{
-  border: 1px solid rgba(255,255,255,.10);
-  background: rgba(255,255,255,.06);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 18px 40px rgba(0,0,0,.35);
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.10);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 50px rgba(0,0,0,.45);
   border-radius: 18px;
   color: #e5e7eb;
 }
 
-
-.navbar-aw{
+.navbar-aw {
   background: transparent;
-  border-bottom: 1px solid rgba(255,255,255,.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 .navbar-aw .navbar-brand,
 .navbar-aw .nav-link,
-.navbar-aw .navbar-text{
-  color: rgba(255,255,255,.88);
+.navbar-aw .navbar-text {
+  color: rgba(255, 255, 255, 0.88);
 }
-.navbar-aw .nav-link:hover{ color: #fff; }
+.navbar-aw .nav-link:hover {
+  color: #fff;
+}
 
-
-.bg-light-ui{
+.bg-light-ui {
   min-height: 100vh;
   background:
-    radial-gradient(900px 520px at 10% 0%, rgba(37,99,235,.18) 0%, rgba(234,243,255,0) 55%),
-    radial-gradient(900px 520px at 90% 10%, rgba(124,58,237,.12) 0%, rgba(234,243,255,0) 55%),
+    radial-gradient(
+      900px 520px at 10% 0%,
+      rgba(37, 99, 235, 0.18) 0%,
+      rgba(234, 243, 255, 0) 55%
+    ),
+    radial-gradient(
+      900px 520px at 90% 10%,
+      rgba(124, 58, 237, 0.12) 0%,
+      rgba(234, 243, 255, 0) 55%
+    ),
     linear-gradient(180deg, var(--aw-app-bg), var(--aw-app-bg-2));
   color: var(--aw-text);
 }
 
-.bg-light-ui .small-muted{ color: var(--aw-muted); }
+.bg-light-ui .small-muted {
+  color: var(--aw-muted);
+}
 
-
-.topbar{
-  background: rgba(255,255,255,.75);
+.topbar {
+  background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(15,23,42,.08);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
 }
 .topbar .navbar-brand,
 .topbar .nav-link,
-.topbar .navbar-text{
+.topbar .navbar-text {
   color: var(--aw-text);
 }
-.topbar .nav-link:hover{ color: #111827; }
+.topbar .nav-link:hover {
+  color: #111827;
+}
 
-
-.card-ui{
+.card-ui {
   background: var(--aw-card);
-  border: 1px solid rgba(15,23,42,.08);
+  border: 1px solid rgba(15, 23, 42, 0.08);
   border-radius: var(--aw-radius);
-  box-shadow: 0 10px 24px rgba(15,23,42,.08);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
 }
 
-
-.panel-ui{
-  background: rgba(255,255,255,.70);
-  border: 1px solid rgba(15,23,42,.08);
+.panel-ui {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(15, 23, 42, 0.08);
   border-radius: var(--aw-radius);
-  box-shadow: 0 10px 24px rgba(15,23,42,.06);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
 }
 
-
-.action-card{
+.action-card {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -144,112 +172,120 @@ body{
   width: 100%;
   text-align: left;
 
-  background: rgba(255,255,255,.85);
-  border: 1px solid rgba(15,23,42,.08);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(15, 23, 42, 0.08);
   border-radius: var(--aw-radius);
-  box-shadow: 0 10px 20px rgba(15,23,42,.06);
-  transition: transform .12s ease, box-shadow .12s ease;
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.06);
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease;
 }
 
-.action-card:hover{
+.action-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 26px rgba(15,23,42,.10);
+  box-shadow: 0 14px 26px rgba(15, 23, 42, 0.1);
 }
 
-.action-icon{
+.action-icon {
   width: 44px;
   height: 44px;
   border-radius: 12px;
   display: grid;
   place-items: center;
-  background: rgba(37,99,235,.12);
+  background: rgba(37, 99, 235, 0.12);
   color: var(--aw-primary);
   font-size: 18px;
 }
 
-.action-title{
+.action-title {
   font-weight: 800;
   line-height: 1.1;
 }
 
-.action-sub{
+.action-sub {
   margin-top: 2px;
   font-size: 13px;
   color: var(--aw-muted);
 }
 
-.action-chev{
+.action-chev {
   margin-left: auto;
   font-size: 22px;
-  opacity: .55;
+  opacity: 0.55;
 }
 
 /* =========================
    BOTONES (compartidos)
    ========================= */
-.btn-wallet{
+.btn-wallet {
   border-radius: 14px;
-  padding: .85rem 1rem;
+  padding: 0.85rem 1rem;
   font-weight: 700;
 }
 
 /* botón principal gradiente (landing y app si lo quieres) */
-.btn-aw{
+.btn-aw {
   border: 0;
   color: #fff;
   background: linear-gradient(90deg, var(--aw-primary), var(--aw-secondary));
-  box-shadow: 0 10px 24px rgba(37,99,235,.20);
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.2);
 }
-.btn-aw:hover{ filter: brightness(1.05); }
+.btn-aw:hover {
+  filter: brightness(1.05);
+}
 
-.btn-aw-outline{
+.btn-aw-outline {
   border-radius: 14px;
-  border: 1px solid rgba(15,23,42,.14);
-  background: rgba(255,255,255,.75);
+  border: 1px solid rgba(15, 23, 42, 0.14);
+  background: rgba(255, 255, 255, 0.75);
   color: var(--aw-text);
 }
-.btn-aw-outline:hover{
-  background: rgba(255,255,255,.90);
+.btn-aw-outline:hover {
+  background: rgba(255, 255, 255, 0.9);
 }
 
 /* =========================
    FORMS (compartidos)
    ========================= */
 .form-control,
-.form-select{
+.form-select {
   border-radius: 14px;
 }
 
 .form-control:focus,
-.form-select:focus{
-  border-color: rgba(37,99,235,.45);
-  box-shadow: 0 0 0 .25rem rgba(37,99,235,.15);
+.form-select:focus {
+  border-color: rgba(37, 99, 235, 0.45);
+  box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.15);
 }
 
 /* =========================
    MODALS / EXTRAS
    ========================= */
-.modal-content{ border-radius: 16px; }
-
-hr{
-  border: 0;
-  border-top: 1px solid rgba(15,23,42,.10);
+.modal-content {
+  border-radius: 16px;
 }
 
+hr {
+  border: 0;
+  border-top: 1px solid rgba(15, 23, 42, 0.1);
+}
 
 /* === Mejora botones de acción === */
 .action-card {
   cursor: pointer;
-  transition: transform .12s, box-shadow .12s;
+  transition:
+    transform 0.12s,
+    box-shadow 0.12s;
 }
-.action-card:hover, .action-card:focus {
+.action-card:hover,
+.action-card:focus {
   transform: translateY(-2px) scale(1.015);
-  box-shadow: 0 8px 24px rgba(37,99,235,.10);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.1);
   outline: 2px solid var(--aw-primary);
 }
 
 .saldo-bajo {
   color: #dc2626 !important; /* rojo */
   font-weight: bold;
-  transition: color .2s;
+  transition: color 0.2s;
 }
