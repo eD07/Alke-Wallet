@@ -27,31 +27,45 @@
 
 ## 📸 Capturas
 
-> Tip: en GitHub, las imágenes se pueden **clicear para verlas en grande**.  
-> Abajo van en “miniaturas” para que no queden gigantes.
+<p align="center">
+  <b>Inicio (mobile)</b><br>
+  <a href="assets/screenshots/index-mobile.png">
+    <img src="assets/screenshots/index-mobile.png" width="360" alt="Inicio mobile">
+  </a>
+</p>
 
 <table>
   <tr>
-    <td align="center">
+    <td align="center" valign="top">
       <b>Login</b><br>
-      <img src="assets/screenshots/login.png" width="420" alt="Login">
+      <a href="assets/screenshots/login.png">
+        <img src="assets/screenshots/login.png" width="420" alt="Login">
+      </a>
     </td>
-    <td align="center">
+    <td align="center" valign="top">
       <b>Menú</b><br>
-      <img src="assets/screenshots/menu.png" width="420" alt="Menú">
+      <a href="assets/screenshots/menu.png">
+        <img src="assets/screenshots/menu.png" width="420" alt="Menú">
+      </a>
     </td>
   </tr>
   <tr>
-    <td align="center">
+    <td align="center" valign="top">
       <b>Enviar dinero</b><br>
-      <img src="assets/screenshots/sendmoney.png" width="420" alt="Enviar dinero">
+      <a href="assets/screenshots/sendmoney.png">
+        <img src="assets/screenshots/sendmoney.png" width="420" alt="Enviar dinero">
+      </a>
     </td>
-    <td align="center">
+    <td align="center" valign="top">
       <b>Movimientos</b><br>
-      <img src="assets/screenshots/transactions.png" width="420" alt="Movimientos">
+      <a href="assets/screenshots/transactions.png">
+        <img src="assets/screenshots/transactions.png" width="420" alt="Movimientos">
+      </a>
     </td>
   </tr>
 </table>
+
+<p align="center"><i>Tip: toca cualquier imagen para verla en grande.</i></p>
 
 ---
 
