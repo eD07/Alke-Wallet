@@ -11,7 +11,8 @@
 </head>
 
 <body class="bg-soft">
-  <main class="container min-vh-100 d-flex align-items-center py-4 py-md-5">
+  <!-- En móvil: arriba (start). En md+: centrado -->
+  <main class="container min-vh-100 d-flex align-items-start align-items-md-center py-4 py-md-5">
     <div class="row align-items-center justify-content-center g-4 w-100">
 
       <!-- Imagen -->
@@ -30,17 +31,19 @@
         </div>
       </div>
 
-      <!-- Texto -->
+      <!-- Texto (mismo ancho máximo que la imagen) -->
       <div class="col-12 col-lg-6 text-center text-lg-start">
-        <h1 class="brand display-5 mb-3">Alke Wallet</h1>
+        <div class="mx-auto mx-lg-0" style="max-width: 560px;">
+          <h1 class="brand display-5 mb-3">Alke Wallet</h1>
 
-        <p class="mb-4" style="color: rgba(255,255,255,.72);">
-          Proyecto del Módulo 2 (Frontend). Demo de billetera digital.
-        </p>
+          <p class="mb-4" style="color: rgba(255,255,255,.72);">
+            Proyecto del Módulo 2 (Frontend). Demo de billetera digital.
+          </p>
 
-        <a href="./HTML/login.html" class="btn btn-aw btn-wallet px-4 py-2">
-          Ir a Login
-        </a>
+          <a href="./HTML/login.html" class="btn btn-aw btn-wallet px-4 py-2">
+            Ir a Login
+          </a>
+        </div>
       </div>
 
     </div>
