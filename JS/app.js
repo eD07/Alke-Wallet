@@ -263,7 +263,6 @@ $(document).ready(function () {
   }
 
   // ---------------- ENVIAR DINERO ----------------
-  // ---------------- ENVIAR DINERO ----------------
   if (page === "sendmoney") {
     var wSend = getWallet();
     $("#saldoEnvio").text("$" + wSend.balance);
@@ -335,7 +334,6 @@ $(document).ready(function () {
       });
     }
 
-    // ✅ ESTA es la clave: una sola forma de seleccionar contacto
     function selectContactByIndex(idx) {
       var w = getWallet();
       if (!Array.isArray(w.contacts) || idx < 0 || idx >= w.contacts.length)
@@ -347,31 +345,31 @@ $(document).ready(function () {
       $("#search").val(formatContact(w.contacts[idx]));
       $("#sendMoneyBtn").removeClass("d-none");
 
-      // ✅ NO filtrar después de seleccionar -> no desaparece la lista
+      // NO filtrar después de seleccionar 
       renderContacts("");
     }
 
     // Render inicial (lista completa)
     renderContacts("");
 
-    // ✅ Al entrar a SendMoney, siempre partir sin selección
+   
     (function preloadSelected() {
       var w = getWallet();
-      w.selectedContact = -1; // reset selección
+      w.selectedContact = -1; 
       saveWallet(w);
 
-      $("#search").val(""); // input vacío
-      $("#sendMoneyBtn").addClass("d-none"); // botón oculto
-      renderContacts(""); // lista completa
+      $("#search").val(""); 
+      $("#sendMoneyBtn").addClass("d-none"); 
+      renderContacts(""); 
     })();
 
-    // ✅ Click en la lista
+
     $("#contactsList").on("click", ".contact-item", function () {
       var idx = parseInt($(this).attr("data-idx"), 10);
       selectContactByIndex(idx);
     });
 
-    // ✅ Si el usuario escribe manualmente, se invalida la selección
+  
     let settingFromSelect = false;
     $("#search").on("input", function () {
       if (settingFromSelect) return;
@@ -381,13 +379,13 @@ $(document).ready(function () {
       saveWallet(w);
       $("#sendMoneyBtn").addClass("d-none");
 
-      // (opcional pero útil) filtra mientras escribe
+ 
       renderContacts($(this).val());
     });
 
-    // ✅ Autocompletado (jQuery UI)
+    // Autocompletado 
     if ($.fn.autocomplete) {
-      // por si lo inicializaste antes
+      
       try {
         $("#search").autocomplete("destroy");
       } catch (e) {}
@@ -417,7 +415,7 @@ $(document).ready(function () {
           response(matches);
         },
         select: function (event, ui) {
-          event.preventDefault(); // evita comportamiento raro del input
+          event.preventDefault(); 
           settingFromSelect = true;
           $("#search").val(ui.item.value);
           settingFromSelect = false;
@@ -429,13 +427,13 @@ $(document).ready(function () {
       console.warn("jQuery UI Autocomplete no está cargado.");
     }
 
-    // Buscar (botón / submit)
+    
     $("#searchForm").submit(function (e) {
       e.preventDefault();
       renderContacts($("#search").val());
     });
 
-    // Mostrar/ocultar formulario nuevo contacto
+    
     $("#addContactBtn").click(function () {
       $("#newContactForm").removeClass("d-none");
     });
@@ -445,7 +443,7 @@ $(document).ready(function () {
       $("#contactName,#contactRUT,#contactAlias,#contactBank").val("");
     });
 
-    // Guardar nuevo contacto
+    
     $("#saveContactBtn").click(function (e) {
       e.preventDefault();
 
@@ -487,7 +485,7 @@ $(document).ready(function () {
 
       var w = getWallet();
 
-      // ✅ validación robusta (este era tu dolor)
+      
       if (
         !Number.isInteger(w.selectedContact) ||
         w.selectedContact < 0 ||
