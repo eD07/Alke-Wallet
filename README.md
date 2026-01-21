@@ -90,10 +90,3 @@ Si deseas contribuir al proyecto, sigue estos pasos:
 5. **Push** a la rama (`git push origin feature/nueva-funcionalidad`).
 6. Abre un **Pull Request**.
 
-## Licencia
-
-Este proyecto está bajo la Licencia MIT - consulta el archivo [LICENSE](LICENSE) para más detalles.
-
----
-
-Este README proporciona todos los detalles sobre cómo usar e instalar Alke Wallet. Asegúrate de tener un entorno adecuado para abrir archivos locales si no estás usando un servidor.
