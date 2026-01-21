@@ -1,5 +1,7 @@
 # 📱 Alke Wallet — Aplicación Demo (Frontend)
 
+![Vista principal](assets/screenshots/index-mobile.png)
+
 ![HTML](https://img.shields.io/badge/HTML-5-orange?logo=html5)
 ![CSS](https://img.shields.io/badge/CSS-3-blue?logo=css3)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?logo=javascript)
@@ -18,6 +20,24 @@
 - ✅ **Envío de dinero** a contactos (selección + búsqueda/autocompletado).
 - ✅ **Historial de transacciones** (depósitos, retiros y transferencias).
 - ✅ Persistencia de datos en **localStorage**.
+
+## 📸 Capturas
+
+**Inicio (mobile)**  
+![Inicio](assets/screenshots/index-mobile.png)
+
+**Login**  
+![Login](assets/screenshots/login.png)
+
+**Menú**  
+![Menú](assets/screenshots/menu.png)
+
+**Enviar dinero**  
+![Enviar dinero](assets/screenshots/sendmoney.png)
+
+**Movimientos**  
+![Movimientos](assets/screenshots/transactions.png)
+
 
 ---
 
