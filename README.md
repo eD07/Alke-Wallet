@@ -28,24 +28,24 @@
 ## 📸 Capturas
 
 <p align="center">
-  <b>Inicio (mobile)</b><br>
-  <a href="assets/screenshots/index-mobile.png">
-    <img src="assets/screenshots/index-mobile.png" width="360" alt="Inicio mobile">
+  <b>Login</b><br>
+  <a href="assets/screenshots/login.png">
+    <img src="assets/screenshots/login.png" width="360" alt="Login">
   </a>
 </p>
 
 <table>
   <tr>
     <td align="center" valign="top">
-      <b>Login</b><br>
-      <a href="assets/screenshots/login.png">
-        <img src="assets/screenshots/login.png" width="420" alt="Login">
-      </a>
-    </td>
-    <td align="center" valign="top">
       <b>Menú</b><br>
       <a href="assets/screenshots/menu.png">
         <img src="assets/screenshots/menu.png" width="420" alt="Menú">
+      </a>
+    </td>
+    <td align="center" valign="top">
+      <b>Depositar / Retirar</b><br>
+      <a href="assets/screenshots/deposit.png">
+        <img src="assets/screenshots/deposit.png" width="420" alt="Depositar">
       </a>
     </td>
   </tr>
