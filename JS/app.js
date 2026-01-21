@@ -151,10 +151,7 @@ $(document).ready(function () {
         var w = getWallet();
         w.loggedIn = true;
         saveWallet(w);
-        showAlert(
-          "success",
-          "Login exitoso. Redirigiendo al menú principal...",
-        );
+        showAlert("success", "Login exitoso. Redirigiendo al menú principal...");
         setTimeout(function () {
           window.location.href = "./menu.html";
         }, 800);
@@ -234,7 +231,7 @@ $(document).ready(function () {
           "success",
           "Depósito realizado. Nuevo saldo: $" +
             w.balance +
-            ". Redirigiendo...",
+            ". Redirigiendo..."
         );
       } else {
         w.balance -= amount;
@@ -243,7 +240,7 @@ $(document).ready(function () {
         $("#deposit-legend").text("Monto retirado: $" + amount);
         showAlert(
           "success",
-          "Retiro realizado. Nuevo saldo: $" + w.balance + ". Redirigiendo...",
+          "Retiro realizado. Nuevo saldo: $" + w.balance + ". Redirigiendo..."
         );
       }
 
@@ -284,6 +281,7 @@ $(document).ready(function () {
       var term = (filter || "").toLowerCase(); // Búsqueda en minúsculas
       var $ul = $("#contactsList");
       $ul.empty(); // Limpiar la lista de contactos
+
       list.forEach(function (c, idx) {
         var text =
           c.name +
@@ -294,42 +292,36 @@ $(document).ready(function () {
           " | Banco: " +
           c.bank;
 
-
         if (term && text.toLowerCase().indexOf(term) === -1) return;
-
 
         var $item = $('<div class="list-group-item contact-item"></div>');
         $item.text(text);
-        if (idx === w.selectedContact) $item.addClass("active"); 
+        if (idx === w.selectedContact) $item.addClass("active");
 
-      
         $item.click(function () {
           var w2 = getWallet();
           w2.selectedContact = idx;
-          saveWallet(w2); 
+          saveWallet(w2);
 
- 
-          $("#search").val(c.name); 
-          $("#sendMoneyBtn").removeClass("d-none"); 
+          $("#search").val(c.name); // Actualiza la barra de búsqueda
+          $("#sendMoneyBtn").removeClass("d-none"); // Muestra el botón de enviar
 
-          // Volver a renderizar los contactos con el filtro aplicado
-          renderContacts($("#search").val());
+          renderContacts($("#search").val()); // Vuelve a renderizar los contactos con el filtro aplicado
         });
 
-        // Agregar el elemento de contacto a la lista
         $ul.append($item);
       });
     }
 
-    renderContacts("");
+    renderContacts(""); // Renderiza los contactos por defecto
 
-    // búsqueda
+    // Búsqueda de contactos
     $("#searchForm").submit(function (e) {
       e.preventDefault();
       renderContacts($("#search").val());
     });
 
-    // mostrar/ocultar formulario nuevo contacto
+    // Mostrar/ocultar formulario nuevo contacto
     $("#addContactBtn").click(function () {
       $("#newContactForm").removeClass("d-none");
     });
@@ -339,7 +331,7 @@ $(document).ready(function () {
       $("#contactName,#contactRUT,#contactAlias,#contactBank").val("");
     });
 
-    // guardar contacto (RUT con DV)
+    // Guardar nuevo contacto (con RUT y DV)
     $("#saveContactBtn").click(function (e) {
       e.preventDefault();
 
@@ -368,7 +360,7 @@ $(document).ready(function () {
       renderContacts($("#search").val());
     });
 
-    // enviar dinero
+    // Enviar dinero
     $("#sendMoneyBtn").click(function (e) {
       e.preventDefault();
       var amount = parseInt($("#sendAmount").val(), 10);
@@ -395,7 +387,7 @@ $(document).ready(function () {
 
       showAlert(
         "success",
-        "Envío realizado a " + contact.name + ". Redirigiendo al menú...",
+        "Envío realizado a " + contact.name + ". Redirigiendo al menú..."
       );
       setTimeout(function () {
         window.location.href = "./menu.html";
@@ -414,16 +406,11 @@ $(document).ready(function () {
       var $list = $("#txList");
       $list.empty();
 
-      // Calcula el saldo después de cada transacción
       let saldoActual = w.balance;
-
-      // Clona las transacciones que vas a mostrar, filtradas si corresponde
       let txToShow = w.transactions.filter(function (t) {
-        if (filter && filter !== "all" && t.type !== filter) return false;
-        return true;
+        return filter && filter !== "all" && t.type !== filter ? false : true;
       });
 
-      // Recorre las transacciones, calculando el saldo después de cada una
       txToShow.forEach(function (t, idx) {
         let monto = t.amount;
         let signo = t.type === "deposit" ? "+" : "-";
@@ -431,17 +418,15 @@ $(document).ready(function () {
           t.type === "deposit"
             ? "text-success"
             : t.type === "withdraw"
-              ? "text-danger"
-              : "text-primary";
+            ? "text-danger"
+            : "text-primary";
         let icono = "💸";
         if (t.type === "deposit") icono = "🪙";
         if (t.type === "withdraw") icono = "💵";
         if (t.type === "transfer") icono = "🔁";
 
-
         let saldoDespues = saldoActual;
 
-        // Construye la fila visual
         let $item = $(`
       <div class="list-group-item d-flex justify-content-between align-items-center">
         <div>
@@ -457,7 +442,6 @@ $(document).ready(function () {
     `);
         $list.append($item);
 
-        // Actualiza el saldo para la siguiente transacción hacia atrás
         if (t.type === "deposit") saldoActual -= monto;
         else saldoActual += monto;
       });
@@ -479,159 +463,6 @@ $(document).ready(function () {
   }
 });
 
-$(document).ready(function () {
-  // Función para obtener los contactos
-  function getContacts() {
-    var w = getWallet(); // Obtener los contactos desde el almacenamiento local
-    return w.contacts || []; // Si no existen, retornar un array vacío
-  }
-
-
-  function renderContacts(contacts) {
-    const contactsList = $("#contactsList");
-    contactsList.empty(); // Limpiar la lista
-
-    if (contacts.length === 0) {
-
-      $("#noContactsMessage").removeClass("d-none");
-    } else {
-
-      $("#noContactsMessage").addClass("d-none");
-
-      contacts.forEach(function (contact) {
-        // Crear y agregar cada contacto a la lista
-        const contactItem = `<div class="list-group-item contact-item" data-contact='${JSON.stringify(contact)}'>${contact.name} — RUT: ${contact.rut} | Alias: ${contact.alias} | Banco: ${contact.bank}</div>`;
-        contactsList.append(contactItem);
-      });
-    }
-  }
-
-  // Configurar el autocompletado
-  $("#search").autocomplete({
-    source: function (request, response) {
-      const searchTerm = request.term.toLowerCase(); // Obtener el término de búsqueda
-      const filteredContacts = getContacts().filter((contact) => {
-        return (
-          contact.name.toLowerCase().includes(searchTerm) ||
-          contact.alias.toLowerCase().includes(searchTerm) ||
-          contact.bank.toLowerCase().includes(searchTerm)
-        ); // Filtrar contactos
-      });
-
-      response(
-        filteredContacts.map((contact) => {
-          return (
-            contact.name +
-            " — RUT: " +
-            contact.rut +
-            " | Alias: " +
-            contact.alias +
-            " | Banco: " +
-            contact.bank
-          );
-        }),
-      ); 
-    },
-    minLength: 2, 
-    select: function (event, ui) {
-      const selectedContact = ui.item.value; 
-      $("#search").val(selectedContact); 
-      $("#sendMoneyBtn").removeClass("d-none"); 
-    },
-  });
-
-  
-  $("#contactsList").on("click", ".contact-item", function () {
-    const contact = $(this).data("contact"); 
-    $("#search").val(
-      contact.name +
-        " — " +
-        contact.rut +
-        " | Alias: " +
-        contact.alias +
-        " | Banco: " +
-        contact.bank,
-    ); 
-    $("#sendMoneyBtn").removeClass("d-none"); 
-  });
-
-  // Inicializar la página
-  const contacts = getContacts();
-  renderContacts(contacts); 
-});
-
-
-$("#search").autocomplete({
-  source: getContacts(),
-
-  minLength: 2, 
-  select: function (event, ui) {
-    
-    var selectedContact = ui.item.value;
-    var w = getWallet();
-    var selected = w.contacts.find(function (contact) {
-      return (
-        contact.name +
-          " — " +
-          contact.rut +
-          " | Alias: " +
-          contact.alias +
-          " | Banco: " +
-          contact.bank ===
-        selectedContact
-      );
-    });
-
-    if (selected) {
-      w.selectedContact = w.contacts.indexOf(selected);
-      saveWallet(w);
-      $("#sendMoneyBtn").removeClass("d-none"); // Mostrar el botón de enviar
-    }
-  },
-});
-
-function renderContacts(filter) {
-  var w = getWallet();
-  var list = w.contacts;
-  var term = (filter || "").toLowerCase();
-  var $ul = $("#contactsList");
-  $ul.empty();
-
-  list.forEach(function (c, idx) {
-    var text =
-      c.name +
-      " — RUT: " +
-      c.rut +
-      " | Alias: " +
-      c.alias +
-      " | Banco: " +
-      c.bank;
-    if (term && text.toLowerCase().indexOf(term) === -1) return;
-
-    var $item = $('<div class="list-group-item contact-item"></div>');
-    $item.text(text);
-    if (idx === w.selectedContact) $item.addClass("active");
-
-    $item.click(function () {
-      // Verificar si el evento click se está registrando
-      console.log("Contacto seleccionado: " + c.name);
-
-      var w2 = getWallet();
-      w2.selectedContact = idx;
-      saveWallet(w2);
-
-      // Actualizar el campo de búsqueda
-      $("#search").val(c.name);
-
-      // Mostrar el botón de "Confirmar envío"
-      $("#sendMoneyBtn").removeClass("d-none");
-
-      renderContacts($("#search").val());
-    });
-
-    $ul.append($item);
-  });
-}
 
 
 
