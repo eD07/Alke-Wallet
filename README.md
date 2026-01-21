@@ -39,13 +39,13 @@
     <td align="center" valign="top">
       <b>Menú</b><br>
       <a href="assets/screenshots/menu.png">
-        <img src="assets/screenshots/menu.png" width="340" alt="Menú">
+        <img src="assets/screenshots/menu.png" width="420" alt="Menú">
       </a>
     </td>
     <td align="center" valign="top">
       <b>Depositar / Retirar</b><br>
       <a href="assets/screenshots/deposit.png">
-        <img src="assets/screenshots/deposit.png" width="340" alt="Depositar">
+        <img src="assets/screenshots/deposit.png" width="420" alt="Depositar">
       </a>
     </td>
   </tr>
@@ -53,13 +53,13 @@
     <td align="center" valign="top">
       <b>Enviar dinero</b><br>
       <a href="assets/screenshots/sendmoney.png">
-        <img src="assets/screenshots/sendmoney.png" width="340" alt="Enviar dinero">
+        <img src="assets/screenshots/sendmoney.png" width="420" alt="Enviar dinero">
       </a>
     </td>
     <td align="center" valign="top">
       <b>Movimientos</b><br>
       <a href="assets/screenshots/transactions.png">
-        <img src="assets/screenshots/transactions.png" width="340" alt="Movimientos">
+        <img src="assets/screenshots/transactions.png" width="420" alt="Movimientos">
       </a>
     </td>
   </tr>
