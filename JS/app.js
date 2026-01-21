@@ -151,7 +151,10 @@ $(document).ready(function () {
         var w = getWallet();
         w.loggedIn = true;
         saveWallet(w);
-        showAlert("success", "Login exitoso. Redirigiendo al menú principal...");
+        showAlert(
+          "success",
+          "Login exitoso. Redirigiendo al menú principal...",
+        );
         setTimeout(function () {
           window.location.href = "./menu.html";
         }, 800);
@@ -231,7 +234,7 @@ $(document).ready(function () {
           "success",
           "Depósito realizado. Nuevo saldo: $" +
             w.balance +
-            ". Redirigiendo..."
+            ". Redirigiendo...",
         );
       } else {
         w.balance -= amount;
@@ -240,7 +243,7 @@ $(document).ready(function () {
         $("#deposit-legend").text("Monto retirado: $" + amount);
         showAlert(
           "success",
-          "Retiro realizado. Nuevo saldo: $" + w.balance + ". Redirigiendo..."
+          "Retiro realizado. Nuevo saldo: $" + w.balance + ". Redirigiendo...",
         );
       }
 
@@ -260,6 +263,7 @@ $(document).ready(function () {
   }
 
   // ---------------- ENVIAR DINERO ----------------
+  // ---------------- ENVIAR DINERO ----------------
   if (page === "sendmoney") {
     var wSend = getWallet();
     $("#saldoEnvio").text("$" + wSend.balance);
@@ -275,47 +279,157 @@ $(document).ready(function () {
       $("#searchBox").addClass("d-none");
     });
 
+    function getContacts() {
+      var w = getWallet();
+      return w.contacts || [];
+    }
+
+    function formatContact(c) {
+      return (
+        c.name +
+        " — RUT: " +
+        c.rut +
+        " | Alias: " +
+        c.alias +
+        " | Banco: " +
+        c.bank
+      );
+    }
+
     function renderContacts(filter) {
       var w = getWallet();
-      var list = w.contacts;
-      var term = (filter || "").toLowerCase(); // Búsqueda en minúsculas
+      var list = w.contacts || [];
+      var term = (filter || "").toLowerCase();
       var $ul = $("#contactsList");
-      $ul.empty(); // Limpiar la lista de contactos
+      $ul.empty();
+
+      if (!list.length) {
+        $("#noContactsMessage").removeClass("d-none");
+        return;
+      } else {
+        $("#noContactsMessage").addClass("d-none");
+      }
 
       list.forEach(function (c, idx) {
-        var text =
-          c.name +
-          " — RUT: " +
-          c.rut +
-          " | Alias: " +
-          c.alias +
-          " | Banco: " +
-          c.bank;
+        var text = formatContact(c);
 
-        if (term && text.toLowerCase().indexOf(term) === -1) return;
+        // si hay filtro, aplicar filtro (name/alias/bank/rut)
+        if (term) {
+          const hayMatch =
+            (c.name || "").toLowerCase().includes(term) ||
+            (c.alias || "").toLowerCase().includes(term) ||
+            (c.bank || "").toLowerCase().includes(term) ||
+            (c.rut || "").toLowerCase().includes(term) ||
+            text.toLowerCase().includes(term);
+
+          if (!hayMatch) return;
+        }
 
         var $item = $('<div class="list-group-item contact-item"></div>');
         $item.text(text);
+        $item.attr("data-idx", idx);
+
         if (idx === w.selectedContact) $item.addClass("active");
-
-        $item.click(function () {
-          var w2 = getWallet();
-          w2.selectedContact = idx;
-          saveWallet(w2);
-
-          $("#search").val(c.name); // Actualiza la barra de búsqueda
-          $("#sendMoneyBtn").removeClass("d-none"); // Muestra el botón de enviar
-
-          renderContacts($("#search").val()); // Vuelve a renderizar los contactos con el filtro aplicado
-        });
 
         $ul.append($item);
       });
     }
 
-    renderContacts(""); // Renderiza los contactos por defecto
+    // ✅ ESTA es la clave: una sola forma de seleccionar contacto
+    function selectContactByIndex(idx) {
+      var w = getWallet();
+      if (!Array.isArray(w.contacts) || idx < 0 || idx >= w.contacts.length)
+        return;
 
-    // Búsqueda de contactos
+      w.selectedContact = idx;
+      saveWallet(w);
+
+      $("#search").val(formatContact(w.contacts[idx]));
+      $("#sendMoneyBtn").removeClass("d-none");
+
+      // ✅ NO filtrar después de seleccionar -> no desaparece la lista
+      renderContacts("");
+    }
+
+    // Render inicial (lista completa)
+    renderContacts("");
+
+    // ✅ Al entrar a SendMoney, siempre partir sin selección
+    (function preloadSelected() {
+      var w = getWallet();
+      w.selectedContact = -1; // reset selección
+      saveWallet(w);
+
+      $("#search").val(""); // input vacío
+      $("#sendMoneyBtn").addClass("d-none"); // botón oculto
+      renderContacts(""); // lista completa
+    })();
+
+    // ✅ Click en la lista
+    $("#contactsList").on("click", ".contact-item", function () {
+      var idx = parseInt($(this).attr("data-idx"), 10);
+      selectContactByIndex(idx);
+    });
+
+    // ✅ Si el usuario escribe manualmente, se invalida la selección
+    let settingFromSelect = false;
+    $("#search").on("input", function () {
+      if (settingFromSelect) return;
+
+      var w = getWallet();
+      w.selectedContact = -1;
+      saveWallet(w);
+      $("#sendMoneyBtn").addClass("d-none");
+
+      // (opcional pero útil) filtra mientras escribe
+      renderContacts($(this).val());
+    });
+
+    // ✅ Autocompletado (jQuery UI)
+    if ($.fn.autocomplete) {
+      // por si lo inicializaste antes
+      try {
+        $("#search").autocomplete("destroy");
+      } catch (e) {}
+
+      $("#search").autocomplete({
+        minLength: 2,
+        source: function (request, response) {
+          const term = request.term.toLowerCase();
+          const contacts = getContacts();
+
+          const matches = contacts
+            .map((c, idx) => ({ c, idx }))
+            .filter(({ c }) => {
+              return (
+                (c.name || "").toLowerCase().includes(term) ||
+                (c.alias || "").toLowerCase().includes(term) ||
+                (c.bank || "").toLowerCase().includes(term) ||
+                (c.rut || "").toLowerCase().includes(term)
+              );
+            })
+            .map(({ c, idx }) => ({
+              label: formatContact(c),
+              value: formatContact(c),
+              idx: idx,
+            }));
+
+          response(matches);
+        },
+        select: function (event, ui) {
+          event.preventDefault(); // evita comportamiento raro del input
+          settingFromSelect = true;
+          $("#search").val(ui.item.value);
+          settingFromSelect = false;
+
+          selectContactByIndex(ui.item.idx);
+        },
+      });
+    } else {
+      console.warn("jQuery UI Autocomplete no está cargado.");
+    }
+
+    // Buscar (botón / submit)
     $("#searchForm").submit(function (e) {
       e.preventDefault();
       renderContacts($("#search").val());
@@ -331,7 +445,7 @@ $(document).ready(function () {
       $("#contactName,#contactRUT,#contactAlias,#contactBank").val("");
     });
 
-    // Guardar nuevo contacto (con RUT y DV)
+    // Guardar nuevo contacto
     $("#saveContactBtn").click(function (e) {
       e.preventDefault();
 
@@ -357,7 +471,8 @@ $(document).ready(function () {
       showAlert("success", "Contacto agregado");
       $("#newContactForm").addClass("d-none");
       $("#contactName,#contactRUT,#contactAlias,#contactBank").val("");
-      renderContacts($("#search").val());
+
+      renderContacts("");
     });
 
     // Enviar dinero
@@ -371,10 +486,17 @@ $(document).ready(function () {
       }
 
       var w = getWallet();
-      if (w.selectedContact < 0) {
+
+      // ✅ validación robusta (este era tu dolor)
+      if (
+        !Number.isInteger(w.selectedContact) ||
+        w.selectedContact < 0 ||
+        w.selectedContact >= w.contacts.length
+      ) {
         showAlert("danger", "Selecciona un contacto");
         return;
       }
+
       if (amount > w.balance) {
         showAlert("danger", "Saldo insuficiente");
         return;
@@ -387,7 +509,7 @@ $(document).ready(function () {
 
       showAlert(
         "success",
-        "Envío realizado a " + contact.name + ". Redirigiendo al menú..."
+        "Envío realizado a " + contact.name + ". Redirigiendo al menú...",
       );
       setTimeout(function () {
         window.location.href = "./menu.html";
@@ -418,8 +540,8 @@ $(document).ready(function () {
           t.type === "deposit"
             ? "text-success"
             : t.type === "withdraw"
-            ? "text-danger"
-            : "text-primary";
+              ? "text-danger"
+              : "text-primary";
         let icono = "💸";
         if (t.type === "deposit") icono = "🪙";
         if (t.type === "withdraw") icono = "💵";
@@ -462,7 +584,3 @@ $(document).ready(function () {
     });
   }
 });
-
-
-
-
