@@ -11,17 +11,21 @@
 </head>
 
 <body class="bg-soft">
-  <main class="container py-5">
-    <div class="row align-items-center justify-content-center g-4">
+  <main class="container min-vh-100 d-flex align-items-center py-4 py-md-5">
+    <div class="row align-items-center justify-content-center g-4 w-100">
 
-      <!-- Imagen (enmarcada para que no “reviente” el layout) -->
+      <!-- Imagen -->
       <div class="col-12 col-lg-6 text-center">
-        <div class="p-3 p-md-4 bg-white rounded-4 shadow-lg d-inline-block">
+        <div class="p-3 p-md-4 bg-white rounded-4 shadow-lg mx-auto" style="max-width: 560px;">
           <img
             src="./assets/img/Wallet1.png"
             alt="Alke Wallet"
-            class="img-fluid"
-            style="max-width: 560px;"
+            class="img-fluid w-100"
+            style="
+              display:block;
+              max-height: 55vh;
+              object-fit: contain;
+            "
           >
         </div>
       </div>
@@ -29,7 +33,6 @@
       <!-- Texto -->
       <div class="col-12 col-lg-6 text-center text-lg-start">
         <h1 class="brand display-5 mb-3">Alke Wallet</h1>
-
 
         <p class="mb-4" style="color: rgba(255,255,255,.72);">
           Proyecto del Módulo 2 (Frontend). Demo de billetera digital.

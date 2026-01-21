@@ -289,3 +289,10 @@ hr {
   font-weight: bold;
   transition: color 0.2s;
 }
+
+
+
+.bg-soft img {
+  max-width: 100%;
+  height: auto;
+}
