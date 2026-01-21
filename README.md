@@ -1,6 +1,8 @@
 # 📱 Alke Wallet — Aplicación Demo (Frontend)
 
-![Vista principal](assets/screenshots/index-mobile.png)
+<p align="center">
+  <img src="assets/screenshots/index-mobile.png" alt="Vista principal (mobile)" width="900">
+</p>
 
 ![HTML](https://img.shields.io/badge/HTML-5-orange?logo=html5)
 ![CSS](https://img.shields.io/badge/CSS-3-blue?logo=css3)
@@ -21,23 +23,35 @@
 - ✅ **Historial de transacciones** (depósitos, retiros y transferencias).
 - ✅ Persistencia de datos en **localStorage**.
 
+---
+
 ## 📸 Capturas
 
-**Inicio (mobile)**  
-![Inicio](assets/screenshots/index-mobile.png)
+> Tip: en GitHub, las imágenes se pueden **clicear para verlas en grande**.  
+> Abajo van en “miniaturas” para que no queden gigantes.
 
-**Login**  
-![Login](assets/screenshots/login.png)
-
-**Menú**  
-![Menú](assets/screenshots/menu.png)
-
-**Enviar dinero**  
-![Enviar dinero](assets/screenshots/sendmoney.png)
-
-**Movimientos**  
-![Movimientos](assets/screenshots/transactions.png)
-
+<table>
+  <tr>
+    <td align="center">
+      <b>Login</b><br>
+      <img src="assets/screenshots/login.png" width="420" alt="Login">
+    </td>
+    <td align="center">
+      <b>Menú</b><br>
+      <img src="assets/screenshots/menu.png" width="420" alt="Menú">
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>Enviar dinero</b><br>
+      <img src="assets/screenshots/sendmoney.png" width="420" alt="Enviar dinero">
+    </td>
+    <td align="center">
+      <b>Movimientos</b><br>
+      <img src="assets/screenshots/transactions.png" width="420" alt="Movimientos">
+    </td>
+  </tr>
+</table>
 
 ---
 
@@ -89,8 +103,14 @@
 ├─ JS/
 │  └─ app.js
 └─ assets/
-   └─ img/
-      └─ Wallet1.png
+   ├─ img/
+   │  └─ Wallet1.png
+   └─ screenshots/
+      ├─ index-mobile.png
+      ├─ login.png
+      ├─ menu.png
+      ├─ sendmoney.png
+      └─ transactions.png
 ```
 
 ---
@@ -129,5 +149,3 @@ location.reload();
 3. Commit: `git commit -m "Agrega X"`
 4. Push: `git push origin feature/nueva-funcionalidad`
 5. Abre un **Pull Request**
-
-
