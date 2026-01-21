@@ -1,85 +1,113 @@
-
-# 📱 **Alke Wallet - Aplicación Demo**
+# 📱 Alke Wallet — Aplicación Demo (Frontend)
 
 ![HTML](https://img.shields.io/badge/HTML-5-orange?logo=html5)
 ![CSS](https://img.shields.io/badge/CSS-3-blue?logo=css3)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?logo=javascript)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5-blue?logo=bootstrap)
-![jQuery](https://img.shields.io/badge/jQuery-v3.6.0-blue?logo=jquery)
+![jQuery](https://img.shields.io/badge/jQuery-3.7.1-blue?logo=jquery)
+![Storage](https://img.shields.io/badge/localStorage-Simulado-6c757d)
 
-**Alke Wallet** es una aplicación de demostración para la gestión de fondos digitales. Permite a los usuarios realizar depósitos, transferencias, y visualizar el historial de transacciones.
+**Alke Wallet** es una aplicación web **demo** que simula una billetera digital. Permite **iniciar sesión**, **registrar usuarios**, **depositar**, **enviar dinero a contactos** y **revisar movimientos**, todo sin backend real (persistencia en `localStorage`).
+
+---
 
 ## 🚀 Funcionalidades
-- **Inicio de sesión**: Los usuarios pueden iniciar sesión utilizando las credenciales demo.
-- **Registro de usuario**: Crear cuentas proporcionando un correo electrónico y contraseña.
-- **Gestión de fondos**: Realiza depósitos y consulta saldo disponible.
-- **Envío de dinero**: Envía dinero a otros contactos de tu lista.
-- **Historial de transacciones**: Accede a todas las transacciones realizadas.
+- ✅ **Inicio de sesión** con credenciales demo y/o usuarios registrados.
+- ✅ **Registro de usuario** (email + contraseña).
+- ✅ **Depósitos / Retiros** con validaciones de saldo.
+- ✅ **Envío de dinero** a contactos (selección + búsqueda/autocompletado).
+- ✅ **Historial de transacciones** (depósitos, retiros y transferencias).
+- ✅ Persistencia de datos en **localStorage**.
 
-## 📂 Requerimientos
+---
 
-### Frontend
-- **HTML**: Estructura de las páginas.
-- **CSS**: Diseño y estilos de la aplicación.
-- **JavaScript**: Lógica para la manipulación de datos y la interacción con el DOM.
-- **Bootstrap 5**: Framework para el diseño responsivo.
-- **jQuery**: Simplificación de la manipulación del DOM y gestión de eventos.
+## 🧩 Tecnologías
+- **HTML + CSS** (estilos personalizados)
+- **JavaScript (ES6)** (lógica de negocio y DOM)
+- **Bootstrap 5** (layout responsive)
+- **jQuery 3.7.1** (eventos y helpers)
 
-### Backend
-Este proyecto no tiene backend real. Todo está simulado en el cliente utilizando **localStorage** para almacenar los datos de usuario y las transacciones.
+> **Backend:** No existe backend. Todo se simula en cliente usando `localStorage`.
 
-## 🛠️ Instalación
+---
 
-Para usar Alke Wallet localmente, sigue estos pasos:
+## 🛠️ Instalación / Ejecución local
 
-1. **Clonar el repositorio**:
+1. **Clonar el repositorio**
    ```bash
    git clone https://github.com/tu-usuario/alke-wallet.git
    ```
+2. **Abrir el proyecto**
+   - Recomendado: usar **Live Server** (VS Code).
+   - Abrir `index.html`.
 
-2. **Abrir los archivos**: 
-   - Abre el archivo `index.html` en tu navegador para iniciar la aplicación.
-   - Usa herramientas como **Live Server** de Visual Studio Code para ver la aplicación en tiempo real.
+---
 
-## 🔑 Uso
-
-1. **Iniciar sesión**: Usa las siguientes credenciales para iniciar sesión en la aplicación:
-   - **Email**: `user@test.com`
-   - **Contraseña**: `1234`
-
-2. **Registrar un nuevo usuario**: Haz clic en "¿No tienes una cuenta? Regístrate aquí" para mostrar el formulario de registro. Ingresa un correo electrónico y una contraseña.
-
-3. **Simular un depósito**: Una vez que inicies sesión, podrás simular un depósito y ver tu saldo disponible.
-
-4. **Enviar dinero**: Accede a la opción "Enviar dinero", selecciona un contacto y realiza una transferencia simulada.
-
-5. **Ver historial de transacciones**: Revisa todas las transacciones realizadas desde la página de "Últimos movimientos".
-
-## 🔐 Credenciales de acceso
+## 🔑 Credenciales de acceso
 
 ### Usuario Demo
-- **Email**: `user@test.com`
-- **Contraseña**: `1234`
+- **Email:** `user@test.com`
+- **Contraseña:** `1234`
 
-Estas credenciales permiten acceder a una cuenta de demostración con saldo ficticio.
+> También puedes crear un usuario nuevo desde el link de registro en `login.html`.
 
-## 🛠️ Tecnologías utilizadas
+---
 
-- **HTML**: Estructura base de las páginas.
-- **CSS**: Estilos personalizados para la interfaz de usuario.
-- **JavaScript**: Funcionalidades de la aplicación, como la validación de login, la gestión de contactos y la simulación de transacciones.
-- **Bootstrap**: Framework de diseño para crear una interfaz responsiva y moderna.
-- **jQuery**: Simplificación de la manipulación del DOM y eventos.
+## 🗂️ Estructura del proyecto (referencial)
+
+```txt
+/
+├─ index.html
+├─ HTML/
+│  ├─ login.html
+│  ├─ menu.html
+│  ├─ deposit.html
+│  ├─ sendmoney.html
+│  └─ transactions.html
+├─ CSS/
+│  └─ styles.css
+├─ JS/
+│  └─ app.js
+└─ assets/
+   └─ img/
+      └─ Wallet1.png
+```
+
+---
+
+## 💾 Datos guardados (localStorage)
+
+La app guarda información en `localStorage`, por ejemplo:
+- Estado de sesión (`loggedIn`)
+- Usuarios registrados
+- Saldo
+- Contactos
+- Historial de transacciones
+- Contacto seleccionado (para transferencias)
+
+### 🔄 Resetear la app (volver a estado inicial)
+Abre la consola del navegador y ejecuta:
+```js
+localStorage.clear();
+location.reload();
+```
+
+---
+
+## 🧪 Flujo de uso rápido
+1. Entra a `index.html` → **Ir a Login**
+2. Inicia sesión con credenciales demo o crea un usuario.
+3. Deposita saldo (si aplica).
+4. Ve a **Enviar dinero**, selecciona un contacto y confirma.
+5. Revisa los **movimientos**.
+
+---
 
 ## 🤝 Contribuciones
-
-Si deseas contribuir al proyecto, sigue estos pasos:
-
-1. **Fork** el repositorio.
-2. Crea una nueva rama (`git checkout -b feature/nueva-funcionalidad`).
-3. Realiza tus cambios.
-4. **Commit** tus cambios (`git commit -am 'Añadir nueva funcionalidad'`).
-5. **Push** a la rama (`git push origin feature/nueva-funcionalidad`).
-6. Abre un **Pull Request**.
+1. Haz **Fork**
+2. Crea una rama: `git checkout -b feature/nueva-funcionalidad`
+3. Commit: `git commit -m "Agrega X"`
+4. Push: `git push origin feature/nueva-funcionalidad`
+5. Abre un **Pull Request**
 
 
