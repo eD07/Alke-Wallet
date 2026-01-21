@@ -30,7 +30,7 @@
 <p align="center">
   <b>Login</b><br>
   <a href="assets/screenshots/login.png">
-    <img src="assets/screenshots/login.png" width="360" alt="Login">
+    <img src="assets/screenshots/login.png" width="320" alt="Login">
   </a>
 </p>
 
@@ -39,13 +39,13 @@
     <td align="center" valign="top">
       <b>Menú</b><br>
       <a href="assets/screenshots/menu.png">
-        <img src="assets/screenshots/menu.png" width="420" alt="Menú">
+        <img src="assets/screenshots/menu.png" width="400" alt="Menú">
       </a>
     </td>
     <td align="center" valign="top">
       <b>Depositar / Retirar</b><br>
       <a href="assets/screenshots/deposit.png">
-        <img src="assets/screenshots/deposit.png" width="420" alt="Depositar">
+        <img src="assets/screenshots/deposit.png" width="400" alt="Depositar">
       </a>
     </td>
   </tr>
@@ -53,19 +53,19 @@
     <td align="center" valign="top">
       <b>Enviar dinero</b><br>
       <a href="assets/screenshots/sendmoney.png">
-        <img src="assets/screenshots/sendmoney.png" width="420" alt="Enviar dinero">
+        <img src="assets/screenshots/sendmoney.png" width="400" alt="Enviar dinero">
       </a>
     </td>
     <td align="center" valign="top">
       <b>Movimientos</b><br>
       <a href="assets/screenshots/transactions.png">
-        <img src="assets/screenshots/transactions.png" width="420" alt="Movimientos">
+        <img src="assets/screenshots/transactions.png" width="400" alt="Movimientos">
       </a>
     </td>
   </tr>
 </table>
 
-<p align="center"><i>Tip: toca cualquier imagen para verla en grande.</i></p>
+<p align="center"><i>Tip: toca cualquier imagen para agrandar.</i></p>
 
 ---
 
