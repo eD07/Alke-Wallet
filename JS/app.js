@@ -509,11 +509,17 @@ $(document).ready(function () {
 
       showAlert(
         "success",
-        "Envío realizado a " + contact.name + ". Redirigiendo al menú...",
+        "Transferencia OK ✅ a " +
+          contact.name +
+          " | Monto: $" +
+          amount.toLocaleString("es-CL") +
+          " | Saldo: $" +
+          w.balance.toLocaleString("es-CL") +
+          " | Redirigiendo...",
       );
       setTimeout(function () {
         window.location.href = "./menu.html";
-      }, 1800);
+      }, 2800);
     });
 
     $("#backMenu").click(function () {
